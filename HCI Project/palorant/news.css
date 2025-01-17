@@ -1,0 +1,85 @@
+@font-face {
+    font-family: Audiowide;
+    src: url('fonts/audiowide-regular-webfont.woff') format('woff');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}   
+
+body {
+    /* background-image: url("images/ascent.png"); */
+    /* background-size: contain; */
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-size: auto;
+    background-color: #FE5152;
+}
+
+.navigation{
+    position: sticky;
+    top: 0;
+    width: auto;
+    display: flex;
+    /* margin-inline: auto; */
+    align-items: center;
+    /* align-content: center; */
+    /* margin-inline: 30px; */
+    background-color: #0F0F1A;
+    overflow: hidden;
+    padding: 12px;
+    z-index: 1000;
+
+}
+
+.navigation .logo {
+    transform: scale(0.6);
+}
+
+.navigation h1 {
+    font-family: Audiowide;
+    color: #5F606B;
+    margin-inline: 10px;
+    margin-right: auto;
+}
+
+.navigation .menubar a {
+    max-width: fit-content;
+    margin-inline: 25px;
+    background-color: #0F0F1A;
+}
+
+
+
+footer {
+    background-color: #0F0F1A;
+    color: #5F606B;
+    position: relative;
+    padding: 8vh; 
+    margin-top: 30.5vh;
+    text-align: center;
+    font-family: Audiowide;
+}
+
+
+.yt-logo {
+    transform: scale(1.438);
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 10vh;
+}
+
+@media screen and (min-width: 769px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}

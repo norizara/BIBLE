@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palorant Bug Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+        }
+        label {
+            text-align: center;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palorant Bug Report</h1>
+    <form id="bugReportForm" onsubmit="return validateForm()">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="server">Server</label>
+        <select id="server" name="server">
+            <option value="">Select a server</option>
+            <option value="NA">North America</option>
+            <option value="EU">Europe</option>
+            <option value="AS">Asia</option>
+            <option value="SA">South America</option>
+        </select>
+
+        <label for="description">Bug Description</label>
+        <textarea id="description" name="description" placeholder="Describe the bug in detail"></textarea>
+
+        <label>
+            <input type="checkbox" id="followUp" name="followUp">
+            Allow follow-up emails
+        </label>
+
+        <button type="submit">Submit Report</button>
+    </form>
+
+    <script src="formValidation.js"></script>
+</body>
+</html>
