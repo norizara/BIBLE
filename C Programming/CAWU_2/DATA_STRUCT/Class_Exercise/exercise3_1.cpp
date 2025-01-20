@@ -116,12 +116,13 @@ void deleteData() {
 int main()
 {
     int choice = -1;
-    while(1){
+    while(choice!=4){
         puts("Priority Queue");
         puts("==============");
         puts("1. Insert Data");
         puts("2. View Data");
         puts("3. Admit Priority (Dequeue)");
+        puts("4. Exit");
         printf("==============\n>> ");
         scanf("%d", &choice); getchar();
         switch (choice)
