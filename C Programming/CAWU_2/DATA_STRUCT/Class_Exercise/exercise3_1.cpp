@@ -10,13 +10,9 @@ struct Node {
     struct Node *prev;
 } *h, *c, *t;
 
-int count = 0;
-
 void viewData(){
-    if(count==0)
-    {
-        puts("No Data Available. Press ENTER to continue...");
-        getchar();
+    if (h == NULL) {
+        puts("No data to available.");
         return;
     }
     struct Node *temp = h;
@@ -37,7 +33,6 @@ void pushMiddle(char tempName[], int tempAge, int tempStatus)
     c->status = tempStatus;
     c->next = NULL;
     c->prev = NULL;
-    count++;
 
     if (!h)
     {
@@ -115,7 +110,6 @@ void deleteData() {
         h->prev = NULL;
     }
     free(temp);
-    count--;
     puts("Successfully admitted.");
 }
 
