@@ -98,7 +98,7 @@ void insertData(){
 
 void deleteData() {
     if (h == NULL) {
-        puts("No data to available.");
+        puts("No data available.");
         return;
     }
 
