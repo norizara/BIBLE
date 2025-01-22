@@ -53,6 +53,10 @@ body {
     background-color: #0F0F1A;
 }
 
+.navigation .menubar a img:hover {
+    filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(268deg) brightness(108%) contrast(100%);
+}
+
 .image-container{
     width: 100%;
     height: auto;

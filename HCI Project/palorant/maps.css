@@ -17,7 +17,7 @@ body {
     background-position: top;
     background-size: cover;
     background-size: auto;
-    background-color: #FE5152;
+    background-color: #ECE8E1;
 }
 
 .navigation{
@@ -53,14 +53,60 @@ body {
     background-color: #0F0F1A;
 }
 
+.navigation .menubar a img:hover {
+    filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(268deg) brightness(108%) contrast(100%);
+}
 
+/* ================================================================================= */
+
+.agent-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.agent-box {
+    border: none;
+    background-color: #cac5bd;
+    display: inline-block;
+}
+
+.agent-box img {
+    border-radius: 0;
+    display: block;
+}
+
+.agent-info {
+    background-color: #313139;
+    text-align: center;
+    width: 31.24rem;
+}
+
+.agent-info h4 {
+    color: #ECE8E1;
+    font-family: Audiowide;
+    font-size: 5rem;
+}
+
+.agent-info p {
+    padding: 20px;
+    margin-top: -2vh;
+    font-family: Helvetica;
+    color: #ECE8E1;
+}
+
+
+
+
+/* ================================================================================= */
 
 footer {
     background-color: #0F0F1A;
     color: #5F606B;
     position: relative;
     padding: 8vh; 
-    margin-top: 30.5vh;
     text-align: center;
     font-family: Audiowide;
 }
