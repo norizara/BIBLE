@@ -58,6 +58,25 @@ body {
 }
 
 
+/* ================================================================================= */
+
+.news {
+    display: inline-flex;
+    /* border: 2px solid #ffffff; */
+    overflow: hidden;
+    position: relative;
+}
+
+.news img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.news img:hover {
+    transform: scale(1.1);
+}
+
+/* ================================================================================= */
+
 
 footer {
     background-color: #0F0F1A;
