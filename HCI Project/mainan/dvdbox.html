@@ -26,7 +26,6 @@
             position: absolute;
             width: 250px;
             height: 130px;
-            color: rgb(255, 0, 204);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,6 +34,7 @@
 
         img {
             height: 250px;
+            transition: filter 0.2s linear;
         }
 
         #counter {
@@ -52,7 +52,7 @@
 <body>
     <div class="container">
         <div class="marquee" id="marquee">
-            <img src="dvd-video-2-logo-black-and-white.png">
+            <img src="dvd-video-2-logo-black-and-white.png" id="logo">
         </div>
         <div id="counter">Collisions: 0</div>
     </div>
@@ -60,6 +60,7 @@
     <script>
         const container = document.querySelector('.container');
         const marquee = document.getElementById('marquee');
+        const logo = document.getElementById('logo');
         const counterDisplay = document.getElementById('counter');
 
         let x = 10; // x position of the marquee
@@ -67,6 +68,8 @@
         let dx = 2; // horizontal movement speed
         let dy = 2; // vertical movement speed
         let collisions = 0;
+
+        let hue = 0; // Initial hue value
 
         function updateMarquee() {
             const containerRect = container.getBoundingClientRect();
@@ -91,6 +94,10 @@
 
             // Update collision counter
             counterDisplay.textContent = `Collisions: ${collisions}`;
+
+            // Update the hue for the rainbow effect
+            hue = (hue + 2) % 360; // Increment hue and loop back after 360
+            logo.style.filter = `hue-rotate(${hue}deg)`; // Apply hue rotation to the image
 
             requestAnimationFrame(updateMarquee);
         }
