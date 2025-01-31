@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="report.css">
     <title>PALORANT</title>
 </head>
 <body>
@@ -20,6 +20,41 @@
             <a href="report.html"><img src="images/report.svg"></a>
         </div>
     </div>
+
+    <section class="report-box">
+
+        <h1>
+            PALORANT BUG REPORT
+        </h1>
+        <form id="bugReportForm" onsubmit="return validateForm()">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+    
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+    
+            <label for="server">Server</label>
+            <select id="server" name="server">
+                <option value="">Select a server</option>
+                <option value="NA">North America</option>
+                <option value="EU">Europe</option>
+                <option value="AS">Asia</option>
+                <option value="SA">South America</option>
+            </select>
+    
+            <label for="description">Bug Description</label>
+            <textarea id="description" name="description" placeholder="Describe the bug in detail"></textarea>
+    
+            <div class="checkbox-container">
+                <input type="checkbox" id="followUp" name="followUp">
+                <label for="followUp">Allow follow-up emails</label>
+            </div>
+    
+            <button type="submit">Submit Report</button>
+        </form>
+    </section>
+
+    <script src="formValidation.js"></script>
     
     <footer>
         <div class="socials">

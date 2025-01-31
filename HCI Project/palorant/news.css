@@ -17,7 +17,7 @@ body {
     background-position: top;
     background-size: cover;
     background-size: auto;
-    background-color: #FE5152;
+    background-color: oldlace;
 }
 
 .navigation{
@@ -60,6 +60,14 @@ body {
 
 /* ================================================================================= */
 
+.news-box h1 {
+    font-family: "Audiowide";
+}
+
+.news-box p {
+    font-family: Helvetica;
+}
+
 .news {
     display: inline-flex;
     /* border: 2px solid #ffffff; */
@@ -67,13 +75,39 @@ body {
     position: relative;
 }
 
+.logo-container img {
+    position: absolute;
+    width: 6vh;
+    height: auto;
+    z-index: 999;
+    padding: 1.4vh;
+}
+
 .news img {
+    width: 55vh;
     transition: transform 0.3s ease-in-out;
 }
 
 .news img:hover {
     transform: scale(1.1);
 }
+
+.news-box {
+    display: inline-block;
+    margin-top: 3vh;
+    margin-inline: 1vh;
+}
+
+.news-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 2vh 0; /* Adjusts spacing */
+    min-height: calc(100vh - 20vh); /* Adjust height dynamically */
+}
+
 
 /* ================================================================================= */
 

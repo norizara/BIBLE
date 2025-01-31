@@ -17,7 +17,7 @@ body {
     background-position: top;
     background-size: cover;
     background-size: auto;
-    background-color: #FE5152;
+    background-color: oldlace;
 }
 
 .navigation{
@@ -57,13 +57,124 @@ body {
     filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(268deg) brightness(108%) contrast(100%);
 }
 
+/* REPOR */
+
+.report-box {
+    background-color: #1A1A2E;
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0px 0px 10px rgba(255, 81, 82, 0.5);
+}
+
+.report-box h1 {
+    text-align: center;
+    color: #FE5152;
+    margin-bottom: 20px;
+    font-family: "Audiowide";
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input, select, textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #252540;
+    color: white;
+}
+
+textarea {
+    resize: none;
+    min-height: 150px;
+}
+
+/* Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.checkbox-container label {
+    margin-top: 3px;
+    font-size: 0.9rem;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #FE5152;
+    border-radius: 4px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #FE5152;
+    border-color: #FE5152;
+}
+
+input[type="checkbox"]::before {
+    content: "✔";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+input[type="checkbox"]:checked::before {
+    display: block;
+}
+
+.checkbox-container label {
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Submit Button */
+button {
+    background-color: #FE5152;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #9E3434;
+}
+/* ======================= */
 
 footer {
     background-color: #0F0F1A;
     color: #5F606B;
     position: relative;
     padding: 8vh; 
-    margin-top: 30.5vh;
     text-align: center;
     font-family: Audiowide;
 }
