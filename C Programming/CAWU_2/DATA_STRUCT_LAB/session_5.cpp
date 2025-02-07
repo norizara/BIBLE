@@ -52,6 +52,24 @@ void inorder(struct Student *root){
     inorder(root->right);
 }
 
+void postorder(struct Student *root){
+    if(root == NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    printf("Student Id : %d, Name : %s\n", root->id, root->name);
+}
+
+void preorder(struct Student *root){
+    if(root == NULL){
+        return;
+    }
+    printf("Student Id : %d, Name : %s\n", root->id, root->name);
+    preorder(root->left);
+    inorder(root->right);
+}
+
 struct Student *search(struct Student *root, int id){
     // case 1 kalau search gak ketemu
     if(root == NULL){
@@ -73,6 +91,28 @@ struct Student *search(struct Student *root, int id){
     }
 }
 
+
+struct Student *update(struct Student *root, int id, char *newName){
+    // case 1 kalau search gak ketemu
+    if(root == NULL){
+        puts("NOT FOUND!");
+        return NULL;
+    }
+    // case 2 kalo search ketemu
+    else if(root->id == id){
+        strcpy(root->name, newName);
+        return root;
+    }
+    // case 3 kalau id yang mau di search lebih besar dari current id
+    else if(id > root->id){
+        return update(root->right, id, newName);
+    }
+    // case 4 kalau id yang mau di search lebih kecil dari current id
+    else if(id < root->id){
+        return update(root->left, id, newName);
+    }
+}
+
 int main(){
 
     struct Student *root = NULL;
@@ -88,13 +128,29 @@ int main(){
     puts("Inorder transerval");
     inorder(root);
     printf("%d\n", root->id);
-
+    
     puts("Searching");
     struct Student *searchedStudent = search(root, 378);
     if(searchedStudent != NULL){
         printf("Found Student with id %d and name %s\n", searchedStudent->id, searchedStudent->name);
     }
-
+    
+    puts("Updating");
+    struct Student *updatedStudent = update(root, 1, "tommy");
+    if(searchedStudent != NULL){
+        printf("Found Student with id %d and name %s\n", updatedStudent->id, updatedStudent->name);
+    }
+    
+    puts("Inorder transerval");
+    inorder(root);
+    printf("%d\n", root->id);
+    puts("Postorder transerval");
+    postorder(root);
+    printf("%d\n", root->id);
+    puts("Preorder transerval");
+    preorder(root);
+    printf("%d\n", root->id);
+    
     return 0;
 
 }
