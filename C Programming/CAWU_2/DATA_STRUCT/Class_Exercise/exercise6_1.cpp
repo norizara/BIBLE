@@ -128,7 +128,7 @@ int main(){
                 char name[20], ticket[20];
                 scanf("%s %s", name, ticket); getchar();
                 pushMid(name, ticket);
-                queue++;
+                queue++;   
             }
         } else if (strcmp(REG_REM_CALL, "REMOVE") == 0){
             scanf("%d", &n); getchar();
