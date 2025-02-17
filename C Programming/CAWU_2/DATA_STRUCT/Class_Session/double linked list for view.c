@@ -131,7 +131,6 @@ void popMiddle(int value)
         temp->next = curr->next;
         curr->next->prev = temp;
         free(curr);
-        
     }
         
 }
