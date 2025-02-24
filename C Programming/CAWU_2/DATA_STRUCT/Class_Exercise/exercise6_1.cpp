@@ -38,9 +38,10 @@ void pushMid(char name[], char ticket[]) {
     }
     struct tnode *temp = h;
     while (temp != NULL) {
-        int ticketCompare = strcmp(temp->ticket, c->ticket);
+        int priority = strcmp(c->ticket, "REGULER");
+        // int ticketCompare = strcmp(temp->ticket, c->ticket);
 
-        if ((ticketCompare > 0)) {
+        if ((priority != 0)) {
             c->next = temp;
             c->prev = temp->prev;
 
