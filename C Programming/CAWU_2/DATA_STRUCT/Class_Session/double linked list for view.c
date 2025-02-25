@@ -35,7 +35,7 @@ void pushTail(int value){
     if(!h){
         h=t=c;
     }
-    else{
+    else{   
         t->next = c;
         c->prev = t;
         t=c;
