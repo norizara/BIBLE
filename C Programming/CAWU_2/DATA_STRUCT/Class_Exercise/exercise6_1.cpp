@@ -37,8 +37,8 @@ void pushMid(char name[], char ticket[]) {
         return;
     }
     struct tnode *temp = h;
+    int priority = strcmp(c->ticket, "REGULER");
     while (temp != NULL) {
-        int priority = strcmp(c->ticket, "REGULER");
         // int ticketCompare = strcmp(temp->ticket, c->ticket);
 
         if ((priority != 0)) {
@@ -143,9 +143,9 @@ int main(){
         } else if(strcmp(REG_REM_CALL, "CALL") == 0){
             for (int i = 0; i < 4; i++)
             {
-                popHead();
-                if(queue == 0) break;
                 queue--;
+                if(queue == 0) break;
+                popHead();
             }
             puts("got into the boat");
         } else if(strcmp(REG_REM_CALL, "EXIT") == 0){

@@ -9,30 +9,30 @@ Data *next;
 } *arr[SIZE];
 
 int midSquare(char coin[]){
-int len = strlen(coin);
-int mid = len/2;
-int sum = 0;
-for(int i = 0; i < len; i++){
-sum += coin[i];
-}
-printf("Sum: %d\n", sum);
-sum*=sum;
+    int len = strlen(coin);
+    int mid = len/2;
+    int sum = 0;
+    for(int i = 0; i < len; i++){
+        sum += coin[i];
+    }
+    printf("Sum: %d\n", sum);
+    sum*=sum;
 
-char sumStr[10] = "";
-sprintf(sumStr, "%d", sum);
-len = strlen(sumStr);
+    char sumStr[10] = "";
+    sprintf(sumStr, "%d", sum);
+    len = strlen(sumStr);
 
-if(len%2==0){
-    mid = len/2;
-    char temp[10];
-    sprintf(temp, "%c%c", sumStr[mid-1], sumStr[mid]);
-    return atoi(temp) % SIZE;
-} else {
-    mid = len/2;
-    char temp[10];
-    sprintf(temp, "%c%c%c", sumStr[mid-1],sumStr[mid], sumStr[mid+1]);
-    return atoi(temp)%SIZE;
-}
+    if(len%2==0){
+        mid = len/2;
+        char temp[10];
+        sprintf(temp, "%c%c", sumStr[mid-1], sumStr[mid]);
+        return atoi(temp) % SIZE;
+    } else {
+        mid = len/2;
+        char temp[10];
+        sprintf(temp, "%c%c%c", sumStr[mid-1],sumStr[mid], sumStr[mid+1]);
+        return atoi(temp)%SIZE;
+    }
 
 
 }
