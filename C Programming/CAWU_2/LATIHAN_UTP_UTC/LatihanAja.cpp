@@ -61,7 +61,7 @@ void insertProbe(const char *name, int age){
     	count++;
  	}
  	if(count == T_S){
- 		printnf("Full.\n");
+ 		printf("Full.\n");
  		free(newHash);
  		return;
 	}
@@ -85,7 +85,9 @@ void displayHashChain() { // Chain
 }
 
 int main(){
-	insertChain("Bobby", 15);
+	// insertChain("Bobby", 15);
+	insertProbe("Bobby", 15);
+	insertProbe("Bobby", 14);
 	displayHashChain();
 	return 0;
 }
