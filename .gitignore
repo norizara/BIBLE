@@ -39,3 +39,4 @@ replay_pid*
 **/.vscode
 /Java OOP/FirstApp/nbproject/private/
 /Java OOP/FirstApp/build/
+*.exe
