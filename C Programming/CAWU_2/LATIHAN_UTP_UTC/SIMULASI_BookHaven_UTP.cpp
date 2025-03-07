@@ -58,11 +58,8 @@ void borrowBook(){
 		printf("Enter borrowing duration [1-30] >> ");
 		scanf("%d", &duration); getchar();
 	}
-	borrowingID[0] = toupper(title[0]);
-	borrowingID[1] = toupper(title[1]);
-	borrowingID[2] = rand()%10 + '0';
-	borrowingID[3] = rand()%10 + '0';
-	borrowingID[4] = rand()%10 + '0';
+	sprintf(borrowingID, "%c%c%d%d%d", toupper(title[0]), toupper(title[1]), rand()%10, rand()%10, rand()%10);
+
 	printf("Borrowing ID >> %s\n", borrowingID);
 	
 	int idx = hash(borrowingID);
