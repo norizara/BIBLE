@@ -113,6 +113,20 @@ void inorder(Mahasiswa *curr){
     inorder(curr->right);
 }
 
+void updateTree(Mahasiswa *curr, int age, char name[100]){
+    if(curr == NULL){
+        return;
+    }
+
+    if(curr->age == age){
+        strcpy(curr->name, name);
+    } else if(curr->age > age){
+        updateTree(curr->left, age, name);
+    } else {
+        updateTree(curr->right, age, name);
+    }
+}
+
 int main(){
     Mahasiswa *root = NULL;
     root = insertAVL(root, 3, "cindy");
