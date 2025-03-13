@@ -12,7 +12,7 @@ struct Entry{
 };
 
 struct HashTable {
-    Entry table[10];
+    struct Entry table[10];
 };
 
 struct node{
