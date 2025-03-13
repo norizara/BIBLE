@@ -41,3 +41,4 @@ replay_pid*
 /Java OOP/FirstApp/nbproject/private/
 /Java OOP/FirstApp/build/
 *.exe
+/bin/
