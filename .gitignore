@@ -42,3 +42,7 @@ replay_pid*
 /Java OOP/FirstApp/build/
 *.exe
 /bin/
+*.prefs
+*.project
+*.gitignore
+*.classpath
