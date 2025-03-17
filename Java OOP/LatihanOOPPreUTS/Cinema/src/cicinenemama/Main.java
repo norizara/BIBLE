@@ -9,7 +9,7 @@ public class Main {
         Employee cashier = new Employee("Bob", "Cashier");
         cinema.addEmployee(manager);
         cinema.addEmployee(cashier);
-
+        
         Hall hall1 = new Hall(1, 100);
         Hall hall2 = new Hall(2, 80);
         cinema.addHall(hall1);

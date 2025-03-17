@@ -52,7 +52,7 @@ public class Cinema {
 				System.out.println("- Movie: "+showtime.getMovie().getTitle());
 				System.out.println("Time: "+showtime.getTime() + ", Date: "+showtime.getDate());
 				System.out.println("Tickets: ");
-				if(showtime.getTickets().isEmpty() == true) {
+				if(showtime.getTickets().isEmpty()) {
 					System.out.println("No Tickets Booked");
 				}else {
 					for(Ticket ticket: showtime.getTickets()) {

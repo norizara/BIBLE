@@ -26,7 +26,7 @@ public class Showtime {
 	public ArrayList<Ticket> getTickets() {
 		return tickets;
 	}
-	
+
 	public void addTicket(Ticket ticket) {
 		tickets.add(ticket);
 	}

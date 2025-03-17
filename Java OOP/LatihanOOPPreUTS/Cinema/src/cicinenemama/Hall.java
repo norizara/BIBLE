@@ -22,7 +22,6 @@ public class Hall {
 	public ArrayList<Showtime> getShowtimes() {
 		return showtimes;
 	}
-
 	public void addShowtime(Showtime showtime) {
 		showtimes.add(showtime);
 	}
