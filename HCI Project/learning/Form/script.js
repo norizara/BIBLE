@@ -27,6 +27,8 @@ form.addEventListener('submit', function(event) {
         alert("Phone number must have 10 digits");
         return;
     }
+
+    alert("Registration successful");
 });
 
 function checkPhone(phone){
@@ -35,4 +37,5 @@ function checkPhone(phone){
             return false;
         }
     }
+    return true;
 }
