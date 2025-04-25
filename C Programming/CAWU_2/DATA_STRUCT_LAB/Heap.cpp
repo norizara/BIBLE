@@ -30,12 +30,32 @@ void insertHeap(int val){
     int i = heapSize;
     heapSize++;
     heap[i] = val;
-    while(i != 0 && heap[parent(i)] < heap[i]){
+    while(i != 0 && heap[parent(i)] > heap[i]){
         swap(&heap[i], &heap[parent(i)]);
         i = parent(i);
     }
 }
 
+int popHeap(){
+    if(heapSize == 0){
+        printf("Heap is empty\n");
+        return -1;
+    }
+    int toPop = heap[0];
+    heap[0] = heap[heapSize-1];
+    heapSize--;
+    int n = 0;
+    while (left(n) < heapSize)
+    {
+        int t = left(n);
+        if (right(n) < heapSize && heap[right(n)] < heap[t])
+        {
+            t = right(n);
+        }
+    }
+    
+    
+}
 void printHeadAsArray(){
     for(int i = 0; i < heapSize; i++){
         printf("%d ", heap[i]);
@@ -44,5 +64,22 @@ void printHeadAsArray(){
 }
 
 int main(){
-
+    insertHeap(9);
+    printHeadAsArray();
+    insertHeap(19);
+    printHeadAsArray();
+    insertHeap(36);
+    printHeadAsArray();
+    insertHeap(8);
+    printHeadAsArray();
+    insertHeap(10);
+    printHeadAsArray();
+    insertHeap(12);
+    printHeadAsArray();
+    insertHeap(22);
+    printHeadAsArray();
+    insertHeap(12);
+    printHeadAsArray();
+    insertHeap(5);
+    printHeadAsArray();
 }
