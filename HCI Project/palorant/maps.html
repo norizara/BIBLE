@@ -3,101 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/maps.css">
+    <link rel="stylesheet" href="maps.css">
     <title>PALORANT</title>
+    <script src="main.js"></script>
+    <link rel="icon" href="images/palorant red.svg" type="image/x-icon">
 </head>
 <body>
-    <div class="navigation">
-        <div class="logo">
-            <img src="images/palorant red.svg">
-        </div>
-        <h1>PALORANT</h1>
-        <div class="menubar">
-            <a href="homepage.html"><img src="images/homepage.svg"></a>
-            <a href="agent.html"><img src="images/agent.svg"></a>
-            <a href="maps.html"><img src="images/maps.svg"></a>
-            <a href="news.html"><img src="images/news.svg"></a>
-            <a href="report.html"><img src="images/report.svg"></a>
-        </div>
-    </div>
-
-    <div class="agents-section">
-
-        <!-- VILLAGE -->
-
-        <div class="agent-1">
-                <div class="agent-box">
-                    <img src="images/Loading_Screen_Haven.png" alt="Ves" width="500rem">
+    <section class="hero-section">
+        <nav class="navbar">
+            <div class="data-container">
+                <img src="images/palorant red.svg" class="gambar">
+                <h1>PALORANT</h1>
+                <div id="menu-time" class="menu-data ">
+                    <a id="close-icon" onclick="closebar()"><img src="images/x.png"></a>
+                    <a href="home.html"><img src="images/homepage.svg"></a>
+                    <a href="agent.html"><img src="images/agent.svg"></a>
+                    <a href="maps.html"><img src="images/maps.svg"></a>
+                    <a href="news.html"><img src="images/news.svg"></a>
+                    <a href="report.html"><img src="images/report.svg"></a>
                 </div>
-                <div class="agent-info">
-                    <h4><b>VILLAGE</b></h4>
-                    <p>
-                        A serene, monastery-inspired map set in a coastal village</p>
-                </div>
-        </div>
-
-        <!-- CLOUDS -->
-
-        <div class="agent-1">
-            <div class="agent-box">
-                <img src="images/Loading_Screen_Ascent.png" alt="Ves" width="500rem">
+                <a id="Menu-bar" onclick="menubar()">&#x2630;</a>
             </div>
-            <div class="agent-info">
-                <h4><b>CLOUDS</b></h4>
-                <p>
-                    A cityscape with open plazas, rustic buildings, and a central rotating skybox.</p>
+        </nav>
+    </section>
+
+    <div class="maps-container">
+        <div class="map-1">
+            <div class="map-box">
+                <img src="images/Loading_Screen_Haven.png" alt="Village">
+            </div>
+            <div class="map-info">
+                <h4>VILLAGE</h4>
+                <p>A serene, monastery-inspired map set in a coastal village.</p>
             </div>
         </div>
 
-        <!-- RUINS -->
-
-        <div class="agent-1">
-            <div class="agent-box">
-                <img src="images/Loading_Screen_Lotus.png" alt="Ves" width="500rem">
+        <div class="map-1">
+            <div class="map-box">
+                <img src="images/Loading_Screen_Ascent.png" alt="Clouds">
             </div>
-            <div class="agent-info">
-                <h4><b>RUINS</b></h4>
-                <p>
-                    Ancient temple complex surrounded by lush greenery, featuring intricate architecture and rotating doors.
-                </p>
+            <div class="map-info">
+                <h4>CLOUDS</h4>
+                <p>A cityscape with open plazas, rustic buildings, and a central rotating skybox.</p>
             </div>
         </div>
 
-        <!-- FACTORY -->
-
-        <div class="agent-1">
-            <div class="agent-box">
-                <img src="images/Loading_Screen_Icebox.png" alt="Ves" width="500rem">
+        <div class="map-1">
+            <div class="map-box">
+                <img src="images/Loading_Screen_Lotus.png" alt="Ruins">
             </div>
-            <div class="agent-info">
-                <h4><b>FACTORY</b></h4>
-                <p>
-                    Industrial shipping facility set in the Arctic, characterized by towering cranes, stacked cargo containers, and icy terrain.
-                </p>
+            <div class="map-info">
+                <h4>RUINS</h4>
+                <p>Ancient temple complex surrounded by lush greenery, featuring intricate architecture and rotating doors.</p>
             </div>
         </div>
 
-        <!-- BEACH -->
-
-        <div class="agent-1">
-            <div class="agent-box">
-                <img src="images/Loading_Screen_Breeze.png" alt="Ves" width="500rem">
+        <div class="map-1">
+            <div class="map-box">
+                <img src="images/Loading_Screen_Icebox.png" alt="Factory">
             </div>
-            <div class="agent-info">
-                <h4><b>BEACH</b></h4>
-                <p>
-                    Take in the sights of historic ruins or seaside caves on this tropical paradise.
-                </p>
+            <div class="map-info">
+                <h4>FACTORY</h4>
+                <p>Industrial shipping facility set in the Arctic, with towering cranes and icy terrain.</p>
+            </div>
+        </div>
+
+        <div class="map-1">
+            <div class="map-box">
+                <img src="images/Loading_Screen_Breeze.png" alt="Beach">
+            </div>
+            <div class="map-info">
+                <h4>BEACH</h4>
+                <p>Take in the sights of historic ruins or seaside caves on this tropical paradise.</p>
             </div>
         </div>
     </div>
 
-    
-    <footer>
+    <footer class="footer">
         <div class="socials">
-            <img src="images/X LOGO.svg" class="x-logo">
-            <img src="images/YT LOGO.svg" class="yt-logo">
-            <img src="images/Insta Log.svg"class="ig-logo">
+            <img src="images/twitter.png">
+            <img src="images/yutobe.png">
+            <img src="images/insta.png">
         </div>
         <p>
             @2025 Giot. All rights reserved.
