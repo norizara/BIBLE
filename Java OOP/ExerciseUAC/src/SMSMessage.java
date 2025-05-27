@@ -10,7 +10,7 @@ public class SMSMessage extends Message {
 		if(loginType.authenticate(username, password)) {
 			System.out.println("SMS sent from "+sender+" to "+reciever+": "+message);
 		} else {
-			System.out.println("Email authentication failed for user: "+username);
+			System.out.println("SMS authentication failed for user: "+username);
 		}
 	}
 }
