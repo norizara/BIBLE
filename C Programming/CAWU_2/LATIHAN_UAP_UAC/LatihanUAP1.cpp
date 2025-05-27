@@ -153,9 +153,6 @@ Node* insertTreatment(Node *root){
     return root;
 }
 
-Node* deleteTreatment(Node *root){
-    return root;
-}
 
 void preorder(Node* root){
     if(root != NULL){
@@ -277,7 +274,7 @@ Node *deleteTreatment(Node* root){
     if(count == 0){
         printf("No Data Available");
         getchar();
-        return;
+        return NULL;
     }
 
     char name[101];
