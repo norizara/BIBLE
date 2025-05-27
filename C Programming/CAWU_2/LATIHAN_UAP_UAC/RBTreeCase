@@ -1,0 +1,18 @@
+Case #1: if node to be deleted is red, just delete
+Case #2: if root is double black, remove double black
+Case #3: if sibling is black, give db to parent
+ + if parent black, parent becomes db
+ + if parent red, parent becomes black
+ + sibling becomes red
+Case #4: if sibling is red, parent and sibling swap color, rotate towards db
+Case #5: if sibling black near child red far child black
+ + swap color of db sibling and red child
+ + rotate sibling opposite db
+ + apply case 6
+Case #6: db sibling black, far child red
+ + swap color of parent and sibling
+ + rotate parent towards db
+ + remove db
+ + turn red child to black
+
+ 
