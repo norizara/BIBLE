@@ -114,6 +114,13 @@ bool traverseTree(Node* root, int target){
     return traverseTree(root->right, target);
 }
 
+void traverseTree(Node *root, int target){
+    if(root == NULL) return;
+    if(root->value == target) return;
+    traverseTree(root->left, target);
+    traverseTree(root->left, target);
+}
+
 Node *deleteInAVL(Node *root, int target){
     if(root == NULL) return NULL;
     else if(root->value > target) root->left = deleteInAVL(root->left, target);
