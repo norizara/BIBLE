@@ -1,0 +1,60 @@
+CREATE DATABASE lademy
+
+CREATE DATABASE lademy_subscription
+
+CREATE TABLE `subscription` (
+    SubscriptionID CHAR(5) PRIMARY KEY CHECK (SubscriptionID REGEXP '^SC[0-9]{3}$'), 
+    ParticipantId CHAR(5), 
+    StartSubscription DATE NOT NULL, 
+    EndSubscription DATE NOT NULL CHECK (DATEDIFF(EndSubscription, StartSubscription) >= 30),
+    FOREIGN KEY (ParticipantID) REFERENCES participant(ParticipantID) ON UPDATE CASCADE ON DELETE CASCADE
+); 
+
+CREATE TABLE membership(
+    MembershipID char(5) PRIMARY KEY CHECK (MembershipID REGEXP '^ME[0-9]{3}$'),
+    ParticipantID char(5) not null,
+    MemberPoint int CHECK (MemberPoint % 2 = 0),
+    JoinDate date CHECK (YEAR(JoinDate) < '2023')
+);
+
+INSERT INTO `subscription`(`SubscriptionID`, `ParticipantId`, `StartSubscription`, `EndSubscription`) VALUES
+('SC001','PT006','2021-05-09','2021-07-09'),
+('SC002','PT001','2021-08-10','2022-01-10'), 
+('SC003','PT009','2022-01-05','2022-03-05');
+
+INSERT INTO `membership`(`MembershipID`, `participantID`, `MemberPoint`, `JoinDate`) 
+VALUES 
+('ME001','PT004',12,'2021-08-02'), 
+('ME002','PT007',6,'2022-02-05'),
+('ME003','PT005',20,'2022-04-07');
+
+SELECT course.CourseName, coursecategory.CourseCategoryName, concat('Rp ', course.CoursePrice) as 'CoursePrice' 
+FROM `course` JOIN `coursecategory` ON course.CourseCategoryID = `coursecategory`.`CourseCategoryID` 
+WHERE `course`.`AmountOfSession` >= 10
+
+SELECT *
+FROM `transactiondetail` JOIN `course` ON transactiondetail.CourseID = course.CourseID
+JOIN `transactionheader` ON transactiondetail.TransactionID = transactionheader.TransactionID
+JOIN `participant` ON transactionheader.ParticipantID = participant.ParticipantID
+WHERE length(course.CourseName) > 20 AND right(CourseID, 1) % 2 = 1;
+
+SELECT participant.ParticipantName, DATE_FORMAT(transactionheader.TransactionDate, '%M %D, %Y') as 'TransactionDate', course.CourseName
+FROM `transactiondetail` JOIN `course` ON transactiondetail.CourseID = course.CourseID
+JOIN `transactionheader` ON transactiondetail.TransactionID = transactionheader.TransactionID
+JOIN `participant` ON transactionheader.ParticipantID = participant.ParticipantID
+WHERE length(course.CourseName) > 20 AND right(course.CourseID, 1) % 2 = 0;
+
+SELECT SUBSTR(participant.ParticipantName, 1, position(' ' in participant.ParticipantName)-1) as 'ParticipantName', participant.ParticipantEmail,  transactionheader.TransactionDate, membership.MemberPoint
+FROM `participant` JOIN transactionheader ON participant.ParticipantID = transactionheader.ParticipantID 
+JOIN membership ON participant.ParticipantID = membership.ParticipantID
+WHERE MONTH(transactionheader.TransactionDate) = 8 AND membership.MemberPoint >= 15;
+
+UPDATE tutor JOIN course ON tutor.TutorID = course.CourseTutorID
+SET TutorEmail = concat(LEFT(tutor.TutorEmail, position('@' in tutor.TutorEmail)), '@lademy.co.id')
+WHERE course.CourseCategoryID LIKE 'CRT04'
+
+DELETE p FROM `participant` p
+JOIN transactionheader th ON th.ParticipantID = p.ParticipantID
+WHERE DAYNAME(th.TransactionDate) = 'Sunday';
+
+DROP DATABASE lademy_subscription

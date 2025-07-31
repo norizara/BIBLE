@@ -1,0 +1,38 @@
+CREATE DATABASE jhogym
+
+CREATE TABLE feedbacks(
+    id char(5) check (id REGEXP '^FB[0-9]{3}$'),
+    participant char (5),
+    class char (5),
+    rating int NOT NULL CHECK (rating BETWEEN 1 and 10),
+    `comment` varchar(300) NOT NULL CHECK (length(`comment`) > 50),
+    `timestamp` datetime NOT NULL CHECK (`timestamp` < '2023-07-13'),
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (participant) REFERENCES participants(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (class) REFERENCES classes(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO trainers (id, name, gender, `status`) VALUES
+('TR021', 'Sophia Adams', 'Female', 1),
+('TR022', 'Ethan Williams', 'Male', 1),
+('TR023', 'Ava Johnson', 'Female', 0),
+('TR024', 'Noah Martinez', 'Male', 1),
+('TR025', 'Isabella Brown', 'Female', 1)
+
+SELECT CONCAT('Trainer ', RIGHT(id, 3)) as 'Trainer ID', name as 'Trainer Name' FROM trainers
+WHERE gender LIKE 'Male' AND status = 0
+
+SELECT name as 'Participant Name', date_format(joined_date, '%M %D, %Y') as 'Joined Date' FROM `participants` WHERE gender LIKE 'Female' AND datediff('2022-12-31', joined_date) > 320
+
+SELECT cl.name, concat(cl.duration/60, ' Hour(s)') FROM `classes` as cl JOIN locations as lo ON cl.location = lo.id WHERE lo.name LIKE '%Resort';
+
+SELECT DISTINCT cl.name as 'Class Name', format(cl.cost, 2) as 'Class Cost (in USD)' FROM `classes` as cl JOIN class_participants as cp ON cl.id = cp.class WHERE cp.participant = 0
+
+UPDATE classes SET cost = cost * 1.1 WHERE duration > 270
+
+DELETE FROM `participants` WHERE joined_date LIKE '2023-07-20'
+
+DELETE FROM `participants` 
+WHERE DAY(participants.joined_date) LIKE "20";
+

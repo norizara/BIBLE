@@ -1,0 +1,38 @@
+INSERT INTO transactiondetail(TransactionID, ProductID, Quantity)
+VALUES
+('TR001','PR014',27),
+('TR001', 'PR010', 2),
+('TR005', 'PR005', 26),
+('TR005', 'PR002', 21)
+
+INSERT INTO msproduct (ProductID, CategoryID, ProductName, ProductPrice, ProductStock)
+VALUES ('PR047', 'CT004', 'Wagyu Saikoro', 12.99, ROUND(RAND()*(50-10)+10 , 2))
+
+ALTER TABLE mscustomer
+ADD CustomerPhone VARCHAR(50) NOT NULL
+
+UPDATE mscustomer SET CustomerPhone = 0;
+
+ALTER TABLE mscustomer
+ADD CONSTRAINT check_phonenumber 
+CHECK (CustomerPhone REGEXP '^[0-9]+$');
+
+DELETE FROM transactionheader
+WHERE TransactionID IN ('TR001', 'TR003', 'TR005')
+
+UPDATE msproduct
+SET productprice = productprice - 2
+WHERE productprice > 10;
+
+UPDATE MsCustomer
+SET 
+    CustomerName = CONCAT('Mrs.', CustomerName),
+    CustomerEmail = INSERT(
+        CustomerEmail,
+        LOCATE('@', CustomerEmail),
+        0,
+        'lady'
+    )
+WHERE 
+    CustomerGender = 'Female'
+    AND TIMESTAMPDIFF(YEAR, CustomerDOB, CURDATE()) > 20;

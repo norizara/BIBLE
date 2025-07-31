@@ -1,0 +1,89 @@
+CREATE DATABASE alligastore_database
+
+CREATE TABLE orders(
+    OrderID CHAR(5) PRIMARY KEY,
+    CustomerID CHAR(5),
+    OrderDate DATE,
+    TotalAmount INT,
+    
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+);
+
+ALTER TABLE orders
+ADD CONSTRAINT format_id CHECK(OrderID REGEXP'^OD[0-9]{3}$')
+
+CREATE TABLE orderitems(
+    OrderItemID CHAR(5) PRIMARY KEY,
+    OrderID CHAR(5),
+    BookID CHAR(5),
+    Quantity INT,
+    
+    FOREIGN KEY (OrderID) REFERENCES orders(OrderID),
+    FOREIGN KEY (BookID) REFERENCES books(BookID)
+);
+
+ALTER TABLE orderitems
+ADD CONSTRAINT format_id CHECK(OrderItemID REGEXP'^OI[0-9]{3}$')
+
+
+ALTER TABLE books
+ADD CONSTRAINT format_id CHECK(PublicationYear >= 1800 AND PublicationYear <= 2023)
+
+INSERT INTO orders(OrderID, CustomerID, OrderDate, TotalAmount)
+VALUES 
+('OD001', 'CU001', '2023-07-26', 4599), 
+('OD002', 'CU002', '2023-07-25', 3250),
+('OD003', 'CU003', '2023-07-24', 1575), 
+('OD004', 'CU004', '2023-07-23', 2730),
+('OD005', 'CU005', '2023-07-22', 5120)
+
+INSERT INTO orderitems(OrderItemID, OrderID, BookID, Quantity) VALUES
+('OI001', 'OD001', 'BO001', 2),
+('OI002', 'OD001', 'BO003', 1),
+('OI003', 'OD002', 'BO002', 1),
+('OI004', 'OD003', 'BO001', 1),
+('OI005', 'OD003', 'BO003', 3),
+('OI006', 'OD004', 'BO003', 2),
+('OI007', 'OD005', 'BO001', 3),
+('OI008', 'OD005', 'BO002', 2)
+
+SELECT bo.Title, au.AuthorName, bo.ISBN, ge.GenreName, bo.PublicationYear  FROM `books` as bo JOIN `authorsbooks` ab ON bo.BookID = ab.BookID JOIN `authors` as au ON ab.AuthorID = au.AuthorID JOIN `genres` as ge ON bo.GenreID = ge.GenreID
+
+UPDATE books SET Price = Price + (Price * 0.1) WHERE PublicationYear < 2000;
+
+SELECT cu.CustomerID, CONCAT(cu.FirstName, ' ', cu.LastName) AS FullName, od.TotalAmount FROM `customers` as cu JOIN orders as od ON cu.CustomerID = od.CustomerID
+
+SELECT bo.BookID, bo.Title, au.AuthorName, ge.GenreName, COUNT(oi.BookID) as TotalOrders 
+FROM `books` as bo 
+JOIN `authorsbooks` as ab on bo.BookID = ab.BookID 
+JOIN `authors` as au ON ab.AuthorID = au.AuthorID 
+JOIN `genres` as ge ON bo.GenreID = ge.GenreID 
+JOIN `orderitems` as oi ON bo.BookID = oi.BookID 
+WHERE ge.GenreName LIKE 'Mystery'
+
+SELECT * FROM `orders` WHERE OrderDate >= DATE_ADD('2023-07-27', INTERVAL -5 DAY)
+
+SELECT bo.Title, CONCAT(LEFT(bo.ISBN, 3), SUBSTR(au.AuthorName, LOCATE(' ', au.AuthorName)+1, 1), RIGHT(bo.ISBN, 3)) as GeneratedCode
+FROM `books` as bo 
+JOIN `authorsbooks` as ab ON bo.BookID = ab.BookID 
+JOIN `authors` as au ON ab.AuthorID = au.AuthorID;
+
+SELECT CONCAT(MONTHNAME(OrderDate), ' ', YEAR(OrderDate)) as 'Date', SUM(TotalAmount) as TotalSales FROM `orders`;
+
+SELECT OrderID, DATE_FORMAT(OrderDate, '%W, %M %D %Y') as UpdatedOrderDate FROM `orders`
+
+DELETE FROM `orderitems` WHERE
+OrderID IN
+(
+	SELECT OrderID FROM `orders` WHERE RIGHT(TotalAmount, 1) = '0'
+);
+
+DELETE FROM `orders` WHERE RIGHT(TotalAmount, 1) = '0';
+
+DELETE FROM `orderitems` WHERE OrderID IN (
+	SELECT OrderID FROM `orders` WHERE TotalAmount < 2000
+);
+
+DELETE FROM `orders` WHERE TotalAmount < 2000
+
+DROP DATABASE alligastore_database

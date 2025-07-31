@@ -1,0 +1,19 @@
+SELECT * FROM mscategory WHERE CategoryName LIKE '%a%'
+
+SELECT CONCAT('Mr.', CustomerName) as CustomerName, CustomerGender, CustomerAddress FROM mscustomer WHERE CustomerGender LIKE 'Male'
+
+SELECT REPLACE(TransactionID, 'TR', 'Transaction ') AS `Transaction Number`, CustomerID, TransactionDate FROM transactionheader WHERE TransactionDate >= DATE_SUB(DATE('2023-01-31'), INTERVAL 31 YEAR);
+
+SELECT ProductName, CONCAT('Price: $', ROUND(ProductPrice*0.5, 2), ' just for today!') FROM msproduct WHERE ProductName LIKE '%Cheese'
+
+SELECT CustomerName, RIGHT(CustomerAddress, POSITION(' ' IN REVERSE(CustomerAddress)) - 1) as AddressType FROM mscustomer WHERE CustomerGender LIKE 'Female'
+
+SELECT TransactionID, DAYNAME(TransactionDate) as Day, UPPER(mc.CustomerName) as CustomerName, CONCAT(LEFT(mc.CustomerEmail, position('@' in mc.CustomerEmail) - 1), '@gmail.com') as email  FROM transactionheader as th JOIN mscustomer as mc on th.CustomerID = mc.CustomerID where month(th.TransactionDate) = 11 AND length(mc.CustomerName) < 12;
+
+SELECT th.TransactionID, GROUP_CONCAT(mp.ProductName SEPARATOR ', ') as 'Product Bought', DATE_FORMAT(th.TransactionDate, '%d %M %Y')as 'Date' 
+from transactionheader as th 
+join transactiondetail as td on th.TransactionID = td.TransactionID
+join msproduct as mp on td.ProductID = mp.ProductID
+WHERE month(th.TransactionDate) = 8
+AND day(th.TransactionDate) % 2 = 1
+group by th.TransactionID, th.TransactionDate

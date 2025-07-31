@@ -1,0 +1,72 @@
+CREATE DATABASE chatenraisemember;
+
+CREATE TABLE SubscriptionType (
+    SubscriptionTypeID char(6) CHECK (SubscriptionTypeID REGEXP '^SUB[0-9]{3}$'),
+    SubscriptionTypeName varchar(100) NOT NULL,
+    DiscountPercentage INT not NULL,
+    PRIMARY KEY (SubscriptionTypeID)
+);
+
+CREATE TABLE SubscriptionUser (
+    UserID char(5) CHECK (UserID REGEXP '^CU[0-9]{3}$'),
+    SubscriptionTypeID char(100) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DAte NOT NULL
+    PRIMARY KEY (UserID),
+    FOREIGN KEY (SubscriptionTypeID) REFERENCES subscriptionuser(SubscriptionTypeID)
+);
+
+INSERT INTO subscriptiontype(SubscriptionTypeID, SubscriptionTypeName, DiscountPercentage)
+VALUES
+	('SUB001', 'Epic', 2),
+   	('SUB002', 'Legend', 5),
+   	('SUB003', 'Mythic', 10)
+
+INSERT INTO subscriptionuser(UserID, SubscriptionTypeID, StartDate, EndDate)
+VALUES
+	('CU001', 'SUB001', '2022-07-10', '2023-01-10'),
+    ('CU005', 'SUB002', '2022-07-15', '2023-10-10'),
+    ('CU007', 'SUB003', '2022-07-20', '2023-07-10')
+
+SELECT * FROM `mscake` WHERE CakeDescription LIKE '% % % %'
+
+SELECT 
+    c.CustomerName,
+    REPLACE(c.CustomerPhone, '08', '+62') AS CustomerPhone,
+    s.StaffName,
+    sp.StaffPositionName,
+    DATE_FORMAT(t.TransactionDate, '%b') AS TransactionMonth
+FROM 
+    mstransaction t
+JOIN 
+    mscustomer c ON t.CustomerID = c.CustomerID
+JOIN 
+    msstaff s ON t.StaffID = s.StaffID
+JOIN 
+    msstaffposition sp ON s.StaffPositionID = sp.StaffPositionID
+WHERE 
+    c.CustomerName LIKE '% %' -- lebih dari 1 kata (ada spasi)
+    AND s.StaffSalary > 2000000;
+
+SELECT CustomerName, st.SubscriptionTypeName, tr.TransactionDate, su.StartDate, su.EndDate, st.DiscountPercentage
+FROM `mscustomer` as cu 
+JOIN `subscriptionuser` as su on cu.CustomerID = su.UserID 
+JOIN mstransaction as tr ON cu.CustomerID = tr.CustomerID
+JOIN `subscriptiontype` as st on su.SubscriptionTypeID = st.SubscriptionTypeID
+WHERE st.SubscriptionTypeName LIKE 'Mythic' OR
+st.SubscriptionTypeName LIKE 'Legend' AND
+MONTH(tr.TransactionDate) = '7'
+
+UPDATE `mscustomer` SET CustomerName = 'Erwin Setiawan Wijaya' 
+WHERE CustomerID IN (
+SELECT CustomerID
+FROM `mstransaction`
+WHERE DATEDIFF(TransactionDate, '2022-08-10') = 2
+)
+
+DELETE FROM `msstaff` WHERE StaffID IN
+(
+    SELECT StaffID FROM `mstransaction` WHERE datediff(transactiondate, '2022-06-10') = -30
+)
+
+DROP DATABASE `chatenraisemember`

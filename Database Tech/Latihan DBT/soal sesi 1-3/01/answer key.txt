@@ -1,0 +1,94 @@
+CREATE DATABASE hehe_groceries
+
+CREATE TABLE mscustomer (
+    CustomerID CHAR(5),
+    CustomerName VARCHAR(50) NOT NULL,
+    CustomerGender VARCHAR(10) NOT NULL,
+    CustomerAddress VARCHAR(50) NOT NULL,
+    CustomerEmail VARCHAR(50) NOT NULL,
+    CustomerDOB DATE
+);
+
+alter table mscustomer
+ADD CONSTRAINT format_id CHECK (CustomerID REGEXP '^CU[0-9]{3}$')
+
+ALTER TABLE mscustomer
+ADD CONSTRAINT key_pk PRIMARY KEY (CustomerID)
+
+CREATE TABLE msemployee (
+    EmployeeID CHAR(5),
+    EmployeeName VARCHAR(50) NOT NULL,
+    EmployeeGender VARCHAR(10) NOT NULL,
+    EmployeeAddress VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE msemployee
+ADD CONSTRAINT format_id CHECK (EmployeeID REGEXP '^EM[0-9]{3}$')
+
+ALTER TABLE msemployee
+ADD CONSTRAINT key_pk PRIMARY KEY (EmployeeID);
+
+CREATE TABLE mscategory(
+    CategoryID CHAR(5) PRIMARY KEY,
+    CategoryName VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE mscategory
+ADD CONSTRAINT CHECK (CategoryID REGEXP '^CT[0-9]{3}$')
+
+CREATE TABLE msproduct(
+    ProductID CHAR(5) PRIMARY KEY,
+    ProductName VARCHAR(50) NOT NULL,
+    ProductPrice INT NOT NULL,
+    CategoryID VARCHAR(5),
+    
+    FOREIGN KEY (CategoryID) REFERENCES mscategory(CategoryID)    
+);	
+
+ALTER TABLE msproduct
+ADD CONSTRAINT format_id CHECK (ProductID REGEXP '^PR[0-9]{3}$')
+
+CREATE TABLE transaction_header(
+    TransactionID CHAR(5) PRIMARY KEY,
+    EmployeeID CHAR(5),
+    CustomerID CHAR(5),
+    TransactionDate DATE NOT NULL,
+    
+    FOREIGN KEY (EmployeeID) REFERENCES msemployee(EmployeeID),
+    FOREIGN KEY (CustomerID) REFERENCES mscustomer(CustomerID)
+);
+
+ALTER TABLE transaction_header
+ADD CONSTRAINT format_id CHECK (TransactionID REGEXP '^TR[0-9]{3}$')
+
+CREATE TABLE transaction_detail(
+    TransactionID CHAR(5),
+    ProductID CHAR(5),
+    Quantity INT,
+    
+    FOREIGN KEY (TransactionID) REFERENCES transaction_header(TransactionID),
+    FOREIGN KEY (ProductID) REFERENCES msproduct(ProductID)
+);
+
+CREATE TABLE msbrand(
+    BrandID char(5) PRIMARY KEY,
+    BrandName varchar(50) NOT NULL
+);
+
+ALTER TABLE msbrand
+ADD CONSTRAINT filter_id CHECK (BrandID REGEXP '^BR[0-9]{3}$')
+
+DROP TABLE msbrand
+
+insert into mscustomer(CustomerID, CustomerName, CustomerGender, CustomerAddress, CustomerEmail, CustomerDOB) VALUES ('CU001', 'Dirk Titterel', 'Male', '74 Melvin Point', 'Dtitterel0@yellowpages.com', '2003-10-29')
+
+INSERT INTO msemployee (EmployeeID, EmployeeName, EmployeeGender, EmployeeAddress)
+VALUES ('EM001', 'Clem', 'Male', '0975 Forest Dale Trail'), ('EM002', 'Dene', 'Male', '2 Grayhawk Parkway'), ('EM003', 'Lethia', 'Female', '905 Goodland Lane'), ('EM004', 'Tyrone','Male','51745 Bowman Hill'), ('EM005', 'Shanda','Male','848 New Castle Center')
+
+SELECT * FROM msemployee
+
+SELECT * FROM mscustomer WHERE CustomerName LIKE 'Dirk Titterel%' // Insert Customer kurang 1 L
+
+UPDATE mscustomer SET CustomerName = 'Dirk Titterell' WHERE CustomerName LIKE 'Dirk Titterel'
+UPDATE mscustomer SET CustomerDOB = '2003-10-29' WHERE CustomerName LIKE 'Dirk Titterell'
+SELECT * FROM mscustomer WHERE CustomerName LIKE 'Dirk Titterell'
